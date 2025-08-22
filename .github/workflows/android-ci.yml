@@ -1,39 +1,39 @@
-name: Android CI
+# name: Android CI
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0   # get full history
-          fetch-tags: true # get tags too
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 0   # get full history
+#           fetch-tags: true # get tags too
 
-      - name: Ensure Git tags
-        run: git fetch --tags origin
+#       - name: Ensure Git tags
+#         run: git fetch --tags origin
 
-      - name: Setup JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
+#       - name: Setup JDK
+#         uses: actions/setup-java@v4
+#         with:
+#           distribution: temurin
+#           java-version: 17
 
-      - name: Make Gradlew executable
-        run: chmod +x gradlew
+#       - name: Make Gradlew executable
+#         run: chmod +x gradlew
 
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug
+#       - name: Build Debug APK
+#         run: ./gradlew assembleDebug
 
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+#       - name: Upload APK artifact
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: debug-apk
+#           path: app/build/outputs/apk/debug/app-debug.apk
