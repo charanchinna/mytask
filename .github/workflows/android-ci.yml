@@ -14,7 +14,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # important fix for git-related errors
+          fetch-depth: 0   # get full history
+          fetch-tags: true # get tags too
+
+      - name: Ensure Git tags
+        run: git fetch --tags origin
 
       - name: Setup JDK
         uses: actions/setup-java@v4
